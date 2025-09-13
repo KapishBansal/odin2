@@ -1,0 +1,199 @@
+# ODIN System Development Prompt
+
+Create a complete Python application for ODIN (Optimal Dynamic Interplanetary Navigator System) - an agentic AI system for autonomous spacecraft trajectory planning from Earth to Moon.
+
+## Core Requirements
+
+### 1. System Architecture
+- **Backend**: Python Flask/FastAPI with RESTful APIs
+- **AI Engine**: Integration with OpenAI/Anthropic APIs for generative AI decision-making
+- **Database**: SQLite/PostgreSQL for mission data storage
+- **Frontend**: React/Vue.js web interface with real-time updates
+- **Multilingual Support**: i18n implementation with Hindi and English support
+
+### 2. Key Components to Implement
+
+#### A. Historical Data Integration Module
+```python
+# Required functionality:
+- Random timestamp generator (Jan 1, 2012 - Dec 31, 2018)
+- NASA API integration for:
+  * Solar activity data (solar flares, CME events)
+  * Space weather conditions
+  * Orbital debris tracking
+- Data parsing and storage system
+- Real-time data processing pipeline
+```
+
+#### B. Trajectory Planning Engine
+```python
+# Core algorithms needed:
+- Lambert's problem solver for initial trajectory calculation
+- Patched conic approximation for multi-body dynamics
+- Hohmann transfer orbit optimization
+- Bi-elliptic transfer calculations
+- Fuel efficiency (ΔV) calculations
+- Time-of-flight optimization
+```
+
+#### C. Threat Detection & Risk Assessment
+```python
+# Risk factors to monitor:
+- Solar flare intensity and timing predictions
+- Space debris collision probability
+- Radiation exposure levels
+- Spacecraft system health monitoring
+- Communication blackout periods
+```
+
+#### D. Generative AI Decision Engine
+```python
+# AI integration requirements:
+- Prompt engineering for trajectory alternatives generation
+- Multi-criteria decision analysis (fuel, time, safety)
+- Natural language explanation generation
+- Risk-benefit trade-off analysis
+- Autonomous replanning triggers
+```
+
+### 3. Specific Features to Build
+
+#### Mission Planning Dashboard
+- Interactive trajectory visualization (3D orbital mechanics)
+- Real-time threat monitoring display
+- Mission timeline with critical events
+- Resource allocation tracker (fuel, power, communications)
+- Crew safety metrics dashboard
+
+#### AI Decision Logging System
+```python
+# Log format example:
+{
+  "timestamp": "2018-03-15T14:30:00Z",
+  "threat_detected": "Solar flare (X9.3 class)",
+  "original_trajectory": {...},
+  "alternative_options": [...],
+  "selected_trajectory": {...},
+  "reasoning": "Rerouting via L1 Lagrange point reduces radiation exposure by 90% with only 6-hour delay",
+  "trade_offs": {
+    "fuel_cost": "+12%",
+    "travel_time": "+6 hours",
+    "radiation_reduction": "-90%",
+    "safety_score": "+45%"
+  }
+}
+```
+
+#### Multilingual Interface
+- Hindi language support for all UI elements
+- Devanagari script rendering for technical terms
+- Localized number formatting and date/time display
+- Audio announcements in Hindi for critical alerts
+
+### 4. Technical Implementation Details
+
+#### Database Schema
+```sql
+-- Mission tracking
+CREATE TABLE missions (
+    id INTEGER PRIMARY KEY,
+    launch_date DATETIME,
+    arrival_date DATETIME,
+    trajectory_data JSON,
+    threat_events JSON,
+    decisions_log JSON
+);
+
+-- Historical space weather data
+CREATE TABLE space_weather (
+    timestamp DATETIME,
+    solar_flux REAL,
+    geomagnetic_index REAL,
+    solar_events JSON
+);
+```
+
+#### API Endpoints Structure
+```python
+# Required REST endpoints:
+POST /api/missions/create
+GET /api/missions/{id}/status
+POST /api/trajectory/calculate
+POST /api/threats/analyze
+GET /api/decisions/history
+POST /api/replanning/trigger
+```
+
+#### Real-time Processing Pipeline
+- WebSocket connections for live updates
+- Background task queue (Celery/RQ) for heavy computations
+- Event-driven architecture for threat response
+- Caching layer for frequently accessed orbital data
+
+### 5. Advanced Features
+
+#### Visualization Components
+- 3D solar system model with real planetary positions
+- Trajectory plotting with uncertainty cones
+- Heat maps for radiation exposure zones
+- Timeline charts for mission phases
+- Decision trees for AI reasoning paths
+
+#### Machine Learning Integration
+- Historical mission success/failure pattern analysis
+- Predictive modeling for space weather events
+- Anomaly detection in spacecraft telemetry
+- Optimization algorithms for multi-objective trajectory planning
+
+### 6. Testing & Validation
+
+#### Simulation Framework
+- Monte Carlo analysis for trajectory uncertainties
+- Historical mission replay capabilities
+- Stress testing with extreme space weather scenarios
+- Performance benchmarking against known optimal solutions
+
+#### Quality Assurance
+- Unit tests for all mathematical calculations
+- Integration tests for API endpoints
+- Load testing for concurrent mission planning
+- Accuracy validation against NASA GMAT software
+
+### 7. Deployment Requirements
+
+#### Infrastructure
+- Docker containerization
+- CI/CD pipeline setup
+- Cloud deployment configuration (AWS/GCP)
+- Monitoring and alerting system
+- Database backup and recovery procedures
+
+#### Security & Compliance
+- API authentication and authorization
+- Data encryption at rest and in transit
+- Audit logging for all system actions
+- Compliance with space industry standards
+
+## Implementation Priority Order
+
+1. **Phase 1**: Basic trajectory calculation engine with Flask API
+2. **Phase 2**: Historical data integration and threat detection
+3. **Phase 3**: AI decision engine with OpenAI integration
+4. **Phase 4**: Web interface with 3D visualizations
+5. **Phase 5**: Hindi language support and localization
+6. **Phase 6**: Real-time processing and WebSocket implementation
+7. **Phase 7**: Advanced ML features and optimization
+8. **Phase 8**: Production deployment and monitoring
+
+## Expected Deliverables
+
+1. Complete Python codebase with documentation
+2. Database setup scripts and sample data
+3. Frontend application with responsive design
+4. API documentation (Swagger/OpenAPI)
+5. Docker configuration files
+6. Test suites with >90% code coverage
+7. Deployment guides and operational manuals
+8. Performance benchmarking reports
+
+Create a fully functional prototype that can demonstrate autonomous trajectory planning, real-time threat response, and clear decision justification in both English and Hindi. The system should be robust enough to handle multiple concurrent missions while maintaining high accuracy in orbital mechanics calculations.
